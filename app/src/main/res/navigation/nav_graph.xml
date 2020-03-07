@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/launchesFragment">
+
+    <fragment
+        android:id="@+id/launchesFragment"
+        android:name="ua.cuscak.appliftingspacex.ui.launches.LaunchesFragment"
+        android:label="@string/all_launches"
+        tools:layout="@layout/fragment_launches" />
+    <fragment
+        android:id="@+id/rocketOverviewFragment"
+        android:name="ua.cuscak.appliftingspacex.ui.rockets.overview.RocketOverviewFragment"
+        android:label="@string/all_rockets"
+        tools:layout="@layout/fragment_rocket_overview" />
+    <fragment
+        android:id="@+id/rocketDetailFragment"
+        android:name="ua.cuscak.appliftingspacex.ui.rockets.detail.RocketDetailFragment"
+        android:label="fragment_rocket_detail"
+        tools:layout="@layout/fragment_rocket_detail" />
+</navigation>
