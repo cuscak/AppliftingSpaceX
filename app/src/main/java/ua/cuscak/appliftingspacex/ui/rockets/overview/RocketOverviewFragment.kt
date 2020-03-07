@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 
 import ua.cuscak.appliftingspacex.R
@@ -44,12 +46,19 @@ class RocketOverviewFragment : Fragment() {
 
         binding.recyclerRockets.apply {
             adapter = RocketItemAdapter(RocketItemAdapter.OnClickListener{
-                Log.d("AAA", it)
                 viewModel.displayRecipeDetails(it)
             })
 
             //addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+
+        viewModel.navigateToSelectedRocket.observe(viewLifecycleOwner, Observer {
+            if ( null != it ) {
+                val action = RocketOverviewFragmentDirections.actionRocketOverviewFragmentToRocketDetailFragment(it)
+                findNavController().navigate(action)
+                viewModel.displayRecipeDetailsComplete()
+            }
+        })
 
         return binding.root
     }

@@ -5,6 +5,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import ua.cuscak.appliftingspacex.models.Rocket
 
 private const val BASE_URL = "https://api.spacexdata.com/v3/"
@@ -30,6 +31,9 @@ interface SpaceApiService {
      */
     @GET("rockets")
     fun getRocketsAsync(): Deferred<List<Rocket>>
+
+    @GET("rockets/{id}")
+    fun getRocketDetailAsync(@Path("id") rocketName: String): Deferred<Rocket>
 }
 
 /**

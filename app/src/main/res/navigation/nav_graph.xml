@@ -23,5 +23,9 @@
         android:id="@+id/rocketDetailFragment"
         android:name="ua.cuscak.appliftingspacex.ui.rockets.detail.RocketDetailFragment"
         android:label="fragment_rocket_detail"
-        tools:layout="@layout/fragment_rocket_detail" />
+        tools:layout="@layout/fragment_rocket_detail" >
+        <argument
+            android:name="rocketId"
+            app:argType="string" />
+    </fragment>
 </navigation>

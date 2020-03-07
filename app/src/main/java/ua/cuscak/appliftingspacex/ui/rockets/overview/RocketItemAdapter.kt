@@ -46,7 +46,7 @@ class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapt
         // get the Rocket object associated with current RecyclerView position
         val rocket = getItem(position)
         holder.itemView.setOnClickListener{
-            onClickListener.onClick(rocket.rocket_name)
+            onClickListener.onClick(rocket.rocket_id)
         }
         holder.bind(rocket)
     }
