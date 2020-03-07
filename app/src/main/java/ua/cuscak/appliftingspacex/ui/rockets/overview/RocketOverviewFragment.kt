@@ -1,6 +1,7 @@
 package ua.cuscak.appliftingspacex.ui.rockets.overview
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -42,8 +43,12 @@ class RocketOverviewFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.recyclerRockets.apply {
-            adapter = RocketItemAdapter()
-            addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
+            adapter = RocketItemAdapter(RocketItemAdapter.OnClickListener{
+                Log.d("AAA", it)
+                viewModel.displayRecipeDetails(it)
+            })
+
+            //addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 
         return binding.root

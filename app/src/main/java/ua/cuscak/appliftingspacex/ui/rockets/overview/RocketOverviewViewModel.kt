@@ -27,6 +27,10 @@ class RocketOverviewViewModel: ViewModel(){
     val rocketsOverview: LiveData<List<Rocket>>
         get() = _rockets
 
+    private val _navigateToSelectedRocket = MutableLiveData<String>()
+    val navigateToSelectedRocket: LiveData<String>
+        get() = _navigateToSelectedRocket
+
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope( viewModelJob + Dispatchers.Main )
@@ -63,5 +67,13 @@ class RocketOverviewViewModel: ViewModel(){
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
+    }
+
+    fun displayRecipeDetails(name: String) {
+        _navigateToSelectedRocket.value = name
+    }
+
+    fun displayRecipeDetailsComplete() {
+        _navigateToSelectedRocket.value = null
     }
 }

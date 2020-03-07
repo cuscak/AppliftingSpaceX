@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ua.cuscak.appliftingspacex.databinding.RocketOverviewItemBinding
 import ua.cuscak.appliftingspacex.models.Rocket
 
-class RocketItemAdapter: ListAdapter<Rocket, RocketItemAdapter.RocketViewHolder>(DiffCallback){
+class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapter<Rocket, RocketItemAdapter.RocketViewHolder>(DiffCallback){
 
     /**
      * The RocketViewHolder constructor takes the binding variable from the associated
@@ -45,6 +45,13 @@ class RocketItemAdapter: ListAdapter<Rocket, RocketItemAdapter.RocketViewHolder>
     override fun onBindViewHolder(holder: RocketViewHolder, position: Int) {
         // get the Rocket object associated with current RecyclerView position
         val rocket = getItem(position)
+        holder.itemView.setOnClickListener{
+            onClickListener.onClick(rocket.rocket_name)
+        }
         holder.bind(rocket)
+    }
+
+    class OnClickListener(val clickListener: (name:String) -> Unit) {
+        fun onClick(name:String) = clickListener(name)
     }
 }
