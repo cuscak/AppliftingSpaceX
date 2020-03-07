@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/launchesFragment">
+    app:startDestination="@id/rocketOverviewFragment">
 
     <fragment
         android:id="@+id/launchesFragment"
@@ -14,7 +14,11 @@
         android:id="@+id/rocketOverviewFragment"
         android:name="ua.cuscak.appliftingspacex.ui.rockets.overview.RocketOverviewFragment"
         android:label="@string/all_rockets"
-        tools:layout="@layout/fragment_rocket_overview" />
+        tools:layout="@layout/fragment_rocket_overview" >
+        <action
+            android:id="@+id/action_rocketOverviewFragment_to_rocketDetailFragment"
+            app:destination="@id/rocketDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rocketDetailFragment"
         android:name="ua.cuscak.appliftingspacex.ui.rockets.detail.RocketDetailFragment"
