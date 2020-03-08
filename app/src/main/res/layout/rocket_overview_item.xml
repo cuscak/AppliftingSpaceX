@@ -6,7 +6,7 @@
     <data>
         <variable
             name="rocket"
-            type="ua.cuscak.appliftingspacex.models.Rocket" />
+            type="ua.cuscak.appliftingspacex.domain.Rocket" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            app:imageUrl="@{rocket.mainImage}"
+            app:imageUrl="@{rocket.imageUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import ua.cuscak.appliftingspacex.R
-import ua.cuscak.appliftingspacex.models.Rocket
+import ua.cuscak.appliftingspacex.domain.Rocket
+import ua.cuscak.appliftingspacex.network.NetworkRocket
 import ua.cuscak.appliftingspacex.ui.rockets.overview.RocketItemAdapter
 import ua.cuscak.appliftingspacex.ui.rockets.overview.SpaceApiStatus
 

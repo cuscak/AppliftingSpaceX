@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ua.cuscak.appliftingspacex.databinding.RocketOverviewItemBinding
-import ua.cuscak.appliftingspacex.models.Rocket
+import ua.cuscak.appliftingspacex.domain.Rocket
+import ua.cuscak.appliftingspacex.network.NetworkRocket
 
 class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapter<Rocket, RocketItemAdapter.RocketViewHolder>(DiffCallback){
 
@@ -33,7 +34,7 @@ class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapt
         }
 
         override fun areContentsTheSame(oldItem: Rocket, newItem: Rocket): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
     }
@@ -46,7 +47,7 @@ class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapt
         // get the Rocket object associated with current RecyclerView position
         val rocket = getItem(position)
         holder.itemView.setOnClickListener{
-            onClickListener.onClick(rocket.rocket_id)
+            onClickListener.onClick(rocket.id)
         }
         holder.bind(rocket)
     }

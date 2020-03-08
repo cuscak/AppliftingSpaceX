@@ -8,8 +8,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import ua.cuscak.appliftingspacex.models.Rocket
+import ua.cuscak.appliftingspacex.domain.Rocket
+import ua.cuscak.appliftingspacex.network.NetworkRocket
 import ua.cuscak.appliftingspacex.network.SpaceApi
+import ua.cuscak.appliftingspacex.network.asDomainModel
 
 /**
  * The [ViewModel] that is attached to the [RocketDetailFragment].
@@ -39,7 +41,7 @@ class RocketDetailViewModel(val rocketId: String): ViewModel(){
 
             try{
                 var result = getRecipeDetailDeferred.await()
-                _rocket.value = result
+                _rocket.value = result.asDomainModel()
                 Log.d("AAA", result.rocket_name)
             } catch (e: Exception) {
                 Log.d(this@RocketDetailViewModel::class.java.name, e.message)

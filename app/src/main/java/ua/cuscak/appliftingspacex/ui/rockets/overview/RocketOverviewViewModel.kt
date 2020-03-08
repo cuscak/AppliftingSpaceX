@@ -7,8 +7,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import ua.cuscak.appliftingspacex.models.Rocket
+import ua.cuscak.appliftingspacex.domain.Rocket
+import ua.cuscak.appliftingspacex.network.NetworkRocket
 import ua.cuscak.appliftingspacex.network.SpaceApi
+import ua.cuscak.appliftingspacex.network.asDomainModel
 
 enum class SpaceApiStatus { LOADING, ERROR, DONE }
 
@@ -48,15 +50,15 @@ class RocketOverviewViewModel: ViewModel(){
     private fun getRockets() {
         coroutineScope.launch {
             //creates and starts the network call on a background thread
-            var getPropertiesDeferred = SpaceApi.retrofitService.getRocketsAsync()
+            var getRocketsDeferred = SpaceApi.retrofitService.getRocketsAsync()
 
             try {
                 _status.value = SpaceApiStatus.LOADING
 
-                var listResult = getPropertiesDeferred.await()
+                var listResult = getRocketsDeferred.await()
 
                 _status.value = SpaceApiStatus.DONE
-                _rockets.value = listResult
+                _rockets.value = listResult.asDomainModel()
             } catch (e: Exception) {
                 _status.value = SpaceApiStatus.ERROR
                 _rockets.value = emptyList()
