@@ -40,7 +40,7 @@ class RocketItemAdapter(private val onClickListener: OnClickListener): ListAdapt
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RocketViewHolder {
-        return RocketViewHolder(RocketOverviewItemBinding.inflate(LayoutInflater.from(parent.context)))
+        return RocketViewHolder(RocketOverviewItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: RocketViewHolder, position: Int) {

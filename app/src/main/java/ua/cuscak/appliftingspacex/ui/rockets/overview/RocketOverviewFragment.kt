@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import ua.cuscak.appliftingspacex.databinding.FragmentRocketOverviewBinding
 
@@ -49,7 +50,7 @@ class RocketOverviewFragment : Fragment() {
             adapter = RocketItemAdapter(RocketItemAdapter.OnClickListener{
                 viewModel.displayRocketDetails(it)
             })
-
+            layoutManager = LinearLayoutManager(context)
             //addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
 

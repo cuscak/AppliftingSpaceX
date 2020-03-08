@@ -9,4 +9,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dollar_icon">Dollar icon</string>
+    <string name="rocket_image">Rocket image</string>
+    <string name="cost_per_launch">%1$s - cost per launch </string>
+    <string name="status_active">Status: Active</string>
+    <string name="status_retired">Status: Retired</string>
+    <string name="description">Description</string>
+
 </resources>

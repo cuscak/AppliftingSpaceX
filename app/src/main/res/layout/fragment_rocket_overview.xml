@@ -18,7 +18,6 @@
             android:id="@+id/recycler_rockets"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:listData="@{viewModel.rocketsOverview}"
             tools:listitem="@layout/rocket_overview_item" />
 
