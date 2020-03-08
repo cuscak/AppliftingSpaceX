@@ -1,6 +1,7 @@
 package ua.cuscak.appliftingspacex.network
 
 import com.google.gson.annotations.SerializedName
+import ua.cuscak.appliftingspacex.database.DatabaseRocket
 import ua.cuscak.appliftingspacex.domain.Rocket
 
 
@@ -35,7 +36,7 @@ data class NetworkRocket(
 }
 
 /**
- * Convert Network result to database object
+ * Convert Network result to domain object
  */
 fun List<NetworkRocket>.asDomainModel(): List<Rocket> {
     return map {
@@ -59,4 +60,20 @@ fun NetworkRocket.asDomainModel(): Rocket {
         active = active,
         cost_per_launch = cost_per_launch
     )
+}
+
+/**
+ * Convert Network results to database objects
+ */
+fun List<NetworkRocket>.asDatabaseModel(): List<DatabaseRocket>{
+    return  map {
+        DatabaseRocket(
+            rocket_id = it.rocket_id,
+            rocket_name = it.rocket_name,
+            description = it.description,
+            image = it.mainImage,
+            active = it.active,
+            cost_per_launch = it.cost_per_launch
+        )
+    }
 }

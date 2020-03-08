@@ -10,21 +10,12 @@ import ua.cuscak.appliftingspacex.domain.Rocket
 @Entity(tableName = "rocket_table")
 data class DatabaseRocket(
     @PrimaryKey
-    val id : Int,
-    val active : Boolean,
-    val stages : Int,
-    val boosters : Int,
-    val cost_per_launch : Int,
-    val success_rate_pct : Int,
-    val first_flight : String,
-    val country : String,
-    val company : String,
-    val image : String,
-    val wikipedia : String,
-    val description : String,
     val rocket_id : String,
-    val rocket_name : String,
-    val rocket_type : String
+    val active : Boolean,
+    val cost_per_launch : Int,
+    val image : String,
+    val description : String,
+    val rocket_name : String
 )
 
 /**
