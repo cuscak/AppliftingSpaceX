@@ -14,3 +14,10 @@ data class Rocket(
     val imageUrl: String,
     val active : Boolean,
     val cost_per_launch : Int)
+
+data class Launch(
+    val missionName : String,
+    val launchYear : Int,
+    val details : String,
+    val missionPatch : String
+)

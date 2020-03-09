@@ -6,7 +6,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ua.cuscak.appliftingspacex.database.SpaceDatabase
 import ua.cuscak.appliftingspacex.database.asDomainModel
+import ua.cuscak.appliftingspacex.domain.Launch
 import ua.cuscak.appliftingspacex.domain.Rocket
+import ua.cuscak.appliftingspacex.network.NetworkLaunch
 import ua.cuscak.appliftingspacex.network.SpaceApi
 import ua.cuscak.appliftingspacex.network.asDatabaseModel
 
@@ -16,6 +18,10 @@ import ua.cuscak.appliftingspacex.network.asDatabaseModel
 class SpaceRepository(private val database: SpaceDatabase) {
 
     val rockets: LiveData<List<Rocket>> = Transformations.map(database.spaceDao.getRockets()) {
+        it.asDomainModel()
+    }
+
+    val launches: LiveData<List<Launch>> = Transformations.map(database.spaceDao.getLaunches()){
         it.asDomainModel()
     }
 
@@ -31,6 +37,17 @@ class SpaceRepository(private val database: SpaceDatabase) {
         withContext(Dispatchers.IO) {
             val rockets = SpaceApi.retrofitService.getRocketsAsync().await()
             database.spaceDao.insertAll(rockets.asDatabaseModel())
+        }
+    }
+
+    /**
+     * Refresh the launches stored in the offline cache.
+     */
+
+    suspend fun refreshLaunches(){
+        withContext(Dispatchers.IO){
+            val launches = SpaceApi.retrofitService.getAllLaunches().await()
+            database.spaceDao.insertAllLaunches(launches.asDatabaseModel())
         }
     }
 }

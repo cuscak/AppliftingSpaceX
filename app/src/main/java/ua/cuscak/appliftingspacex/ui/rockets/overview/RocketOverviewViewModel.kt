@@ -10,11 +10,10 @@ import ua.cuscak.appliftingspacex.database.getDatabase
 import ua.cuscak.appliftingspacex.domain.Rocket
 import ua.cuscak.appliftingspacex.network.NetworkRocket
 import ua.cuscak.appliftingspacex.network.SpaceApi
+import ua.cuscak.appliftingspacex.network.SpaceApiStatus
 import ua.cuscak.appliftingspacex.network.asDomainModel
 import ua.cuscak.appliftingspacex.repository.SpaceRepository
 import java.io.IOException
-
-enum class SpaceApiStatus { LOADING, ERROR, DONE }
 
 /**
  * The [ViewModel] that is attached to the [RocketOverviewFragment].
@@ -64,9 +63,9 @@ class RocketOverviewViewModel(application: Application): AndroidViewModel(applic
     private fun getRocketsFromRepo() {
         coroutineScope.launch {
             try {
-
+                _status.value = SpaceApiStatus.LOADING
                 spaceRepository.refreshRockets()
-
+                _status.value = SpaceApiStatus.DONE
             } catch (networkError: IOException){
                 if(rocketsOverview.value.isNullOrEmpty()){
                     _status.value = SpaceApiStatus.ERROR

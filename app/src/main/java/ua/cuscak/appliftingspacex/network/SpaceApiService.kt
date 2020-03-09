@@ -10,7 +10,7 @@ import ua.cuscak.appliftingspacex.domain.Rocket
 
 private const val BASE_URL = "https://api.spacexdata.com/v3/"
 
-
+enum class SpaceApiStatus { LOADING, ERROR, DONE }
 
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(GsonConverterFactory.create())
@@ -34,6 +34,9 @@ interface SpaceApiService {
 
     @GET("rockets/{id}")
     fun getRocketDetailAsync(@Path("id") rocketName: String): Deferred<NetworkRocket>
+
+    @GET("launches")
+    fun getAllLaunches(): Deferred<List<NetworkLaunch>>
 }
 
 /**

@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import ua.cuscak.appliftingspacex.R
+import ua.cuscak.appliftingspacex.domain.Launch
 import ua.cuscak.appliftingspacex.domain.Rocket
-import ua.cuscak.appliftingspacex.network.NetworkRocket
+import ua.cuscak.appliftingspacex.network.SpaceApiStatus
+import ua.cuscak.appliftingspacex.ui.launches.LaunchItemAdapter
 import ua.cuscak.appliftingspacex.ui.rockets.overview.RocketItemAdapter
-import ua.cuscak.appliftingspacex.ui.rockets.overview.SpaceApiStatus
 
 /**
  * When there is no Rocket data (data is null), hide the [RecyclerView], otherwise show it.
@@ -18,6 +19,12 @@ import ua.cuscak.appliftingspacex.ui.rockets.overview.SpaceApiStatus
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Rocket>?){
     val adapter = recyclerView.adapter as RocketItemAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("listLaunches")
+fun bindLaunchRecyclerView(recyclerView: RecyclerView, data: List<Launch>?){
+    val adapter = recyclerView.adapter as LaunchItemAdapter
     adapter.submitList(data)
 }
 
