@@ -45,6 +45,21 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
+@BindingAdapter("patchImg")
+fun bindPatchImg(imgView: ImageView, imgUrl: String) {
+    if (imgUrl == "NA"){
+        imgView.setImageDrawable(imgView.context.getDrawable(R.drawable.ic_broken_image))
+    } else{
+        Glide.with(imgView.context)
+            .load(imgUrl)
+            .apply(
+                RequestOptions()
+                    .placeholder(R.drawable.loading_animation)
+                    .error(R.drawable.ic_broken_image))
+            .into(imgView)
+    }
+}
+
 /**
  * This binding adapter displays the [SpaceApiStatus] of the network request in an image view.  When
  * the request is loading, it displays a loading_animation.  If the request has an error, it
