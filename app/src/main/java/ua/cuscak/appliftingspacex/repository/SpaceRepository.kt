@@ -1,5 +1,4 @@
 package ua.cuscak.appliftingspacex.repository
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import kotlinx.coroutines.Dispatchers
@@ -8,7 +7,7 @@ import ua.cuscak.appliftingspacex.database.SpaceDatabase
 import ua.cuscak.appliftingspacex.database.asDomainModel
 import ua.cuscak.appliftingspacex.domain.Launch
 import ua.cuscak.appliftingspacex.domain.Rocket
-import ua.cuscak.appliftingspacex.network.NetworkLaunch
+import ua.cuscak.appliftingspacex.network.LaunchesApiFilter
 import ua.cuscak.appliftingspacex.network.SpaceApi
 import ua.cuscak.appliftingspacex.network.asDatabaseModel
 
@@ -44,9 +43,9 @@ class SpaceRepository(private val database: SpaceDatabase) {
      * Refresh the launches stored in the offline cache.
      */
 
-    suspend fun refreshLaunches(){
+    suspend fun refreshLaunches(filter: LaunchesApiFilter){
         withContext(Dispatchers.IO){
-            val launches = SpaceApi.retrofitService.getAllLaunches().await()
+            val launches = SpaceApi.retrofitService.getAllLaunches(filter.value).await()
             database.spaceDao.insertAllLaunches(launches.asDatabaseModel())
         }
     }

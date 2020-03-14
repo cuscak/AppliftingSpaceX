@@ -17,5 +17,10 @@
     <string name="status_active">Status: Active</string>
     <string name="status_retired">Status: Retired</string>
     <string name="description">Description</string>
+    <string name="show_all">Show All</string>
+    <string name="show_upcoming">Show Upcoming</string>
+    <string name="show_past">Show Past</string>
+    <string name="navigation_view_header_title">SpaceX</string>
+    <string name="header_image_content_description">SpaceX image</string>
 
 </resources>

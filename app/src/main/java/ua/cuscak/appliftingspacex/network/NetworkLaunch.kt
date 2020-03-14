@@ -2,6 +2,7 @@ package ua.cuscak.appliftingspacex.network
 
 import com.google.gson.annotations.SerializedName
 import ua.cuscak.appliftingspacex.database.DatabaseLaunch
+import ua.cuscak.appliftingspacex.domain.Launch
 
 data class NetworkLaunch (
     @SerializedName("mission_name") val mission_name : String,
@@ -36,6 +37,20 @@ fun List<NetworkLaunch>.asDatabaseModel(): List<DatabaseLaunch>{
             launch_year = it.launch_year,
             details = it.details,
             mission_patch = it.links.mission_patch
+        )
+    }
+}
+
+/**
+ * Convert Network results to database objects
+ */
+fun List<NetworkLaunch>.asDomainModel(): List<Launch>{
+    return map {
+        Launch(
+            missionName = it.mission_name,
+            launchYear = it.launch_year,
+            details = it.details,
+            missionPatch = it.links.mission_patch
         )
     }
 }

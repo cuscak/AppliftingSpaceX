@@ -18,6 +18,6 @@ data class Rocket(
 data class Launch(
     val missionName : String,
     val launchYear : Int,
-    val details : String,
-    val missionPatch : String
+    val details : String?,
+    val missionPatch : String?
 )

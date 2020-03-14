@@ -19,7 +19,7 @@ class LaunchItemAdapter : ListAdapter<Launch, LaunchItemAdapter.LaunchViewHolder
     }
 
     /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of [Rocket]
+     * Allows the RecyclerView to determine which items have changed when the [List] of [Launch]
      * has been updated.
      */
     companion object DiffCallback: DiffUtil.ItemCallback<Launch>(){

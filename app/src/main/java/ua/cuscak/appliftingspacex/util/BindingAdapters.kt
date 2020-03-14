@@ -46,8 +46,8 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 @BindingAdapter("patchImg")
-fun bindPatchImg(imgView: ImageView, imgUrl: String) {
-    if (imgUrl == "NA"){
+fun bindPatchImg(imgView: ImageView, imgUrl: String?) {
+    if (imgUrl.isNullOrEmpty()){
         imgView.setImageDrawable(imgView.context.getDrawable(R.drawable.ic_broken_image))
     } else{
         Glide.with(imgView.context)
